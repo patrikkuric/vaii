@@ -5,13 +5,6 @@
 body {
     min-height: 100vh;
     background: #1d2021;
-    /*repeating-linear-gradient(
-            45deg,
-            rgba(120, 120, 120, .3),
-            rgba(60, 60, 60, .3) 100px,
-            rgba(35, 35, 35, .3) 100px,
-            rgba(103, 103, 103, .3) 200px
-    ); */
 }
 
 .nav-item-mainNavbar a:link {
