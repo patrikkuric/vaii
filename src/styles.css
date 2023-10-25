@@ -1,0 +1,228 @@
+* {
+    text-decoration: none !important;
+}
+
+body {
+    min-height: 100vh;
+    background: #1d2021;
+    /*repeating-linear-gradient(
+            45deg,
+            rgba(120, 120, 120, .3),
+            rgba(60, 60, 60, .3) 100px,
+            rgba(35, 35, 35, .3) 100px,
+            rgba(103, 103, 103, .3) 200px
+    ); */
+}
+
+.nav-item-mainNavbar a:link {
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-item-mainNavbar a:visited {
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    color: #4bd2ff !important;
+    border-color: #4bd2ff !important;
+}
+
+.mainLogo a {
+    font-family: Copperplate,Copperplate Gothic Light,fantasy;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 2rem;
+    padding: 0 2rem;
+}
+
+.navbar li {
+    color: white;
+    margin-left:15px;
+    margin-right:15px;
+}
+
+.containers a {
+    font-family: monospace;
+    list-style: none;
+    display: flex;
+    font-size: 1rem;
+    color: white;
+}
+
+h1, h2 {
+    overflow: hidden;
+}
+
+.signup a {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    /*    border: 0.12rem solid #FFF; */
+    font-weight: bold;
+}
+
+.signup:hover {
+    /*  background-color: #595959; */
+}
+
+.carousel {
+    max-width: 100%;
+    max-height: 540px;
+    height: auto;
+    width: auto;
+}
+
+.carousel-item{
+    transition: -webkit-transform .6s ease;
+    transition: transform .6s ease,-webkit-transform .6s ease;
+}
+
+.carousel-button {
+    max-height: 540px;
+    height: auto;
+}
+
+.contentPanelItem {
+    display: inline-block;
+    width: 320px;
+    margin: 50px 50px 0 50px;
+}
+
+.contentPanelItem img {
+    height: 180px;
+    width: 320px;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.contentPanelItem figcaption {
+    color: #D2D0CE;
+    font-family: 'Barlow', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+.contentPanelItems{
+    align-self: center;
+}
+
+.navbarOne {
+    background-color: black !important;
+    border-bottom: 0.12rem solid #FFF;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbarTwo {
+    background-color: black !important;
+    border-top: 0.12rem solid #FFF;
+    border-bottom: 0.12rem solid #FFF;
+    height: 60px;
+    overflow: hidden;
+}
+
+.aboutMainSection {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* background: linear-gradient(#8c8c8c, #76A3B2); */
+    background-color: #e1e1e1;
+    border: 2px solid white;
+    border-radius: 0 0 60px 60px;
+}
+
+.aboutContactSection {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    /* background: linear-gradient(#7E9CA6, #3da1c4); */
+    background-color: #e1e1e1;
+    border: 2px solid white;
+    border-radius: 60px 60px 60px 60px;
+}
+
+.contactH1 {
+    color: black;
+    font-family: Copperplate,Copperplate Gothic Light,fantasy;
+    font-weight: bold;
+}
+
+.contactH2 {
+    color: black;
+    font-family: 'Barlow', sans-serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.aboutSection {
+    margin-bottom: 30px;
+}
+
+p {
+    line-height: 1.6;
+    color: #2f2f2f;
+}
+
+.contactInfo {
+    margin-top: 20px;
+    font-family: 'Barlow', sans-serif;
+}
+
+label {
+    margin-top: 10px;
+    margin-bottom: 0 !important;
+}
+
+input.form-control::placeholder {
+    opacity: .5;
+}
+
+.card {
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.nav-item-signup {
+    background-color: #000000;
+    border-radius: 5px 5px 0 0;
+}
+
+.nav-item-signup a {
+    color: #FFFFFF !important;
+    border: 2px solid white;
+    font-weight: bold;
+}
+
+.nav-item-signup a:hover {
+    color: #4bd2ff !important;
+}
+
+.nav-item-signup a:visited {
+    background-color: #1d2021 !important;
+}
+
+.nav-item-signup a:link {
+    background-color: #1d2021 !important;
+    color: #ffffff;
+    border: none;
+}
+
+.card-header {
+    background-color: #484848;
+}
+
+.tab-pane.active {
+    animation: slide-down 0.7s ease-out;
+    overflow: hidden;
+}
+/*
+@keyframes slide-down {
+    0% { opacity: 0; transform: translateY(-100%); }
+    100% { opacity: 1; transform: translateY(0); }
+}*/
