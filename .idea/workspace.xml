@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6d14ee14-c572-4679-934a-3f69f85db7e3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/semestral_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/semestral_project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vaii.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/ACMirage.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Alan_Wake_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/BaldursGate3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Borderlands3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Cyberpunk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Elden_Ring.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Hades.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Lies_of_P.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Lords of the Fallen.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/PolygonialBackground.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Star_Wars_Jedi_Survivor.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/Starfield.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Navbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Navbar2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/adminButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/contentPanelItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dropdownComponent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/About.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Games.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Signup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Tech.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles.css" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;patrikkuric&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a3e243a3-b542-4222-8fe0-f800fe884421" />
+        <option name="url" value="https://github.com/patrikkuric/vaii.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/styles.css" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2WTZo0PTLHYa4gjacAsBEISNg30" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "javascript.nodejs.core.library.configured.version": "18.15.0",
+    "javascript.nodejs.core.library.typings.version": "18.15.0",
+    "last_opened_file_path": "C:/Users/Patrik Kuric/PhpstormProjects/vaii/backend",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "C:/Users/Patrik Kuric/AppData/Roaming/JetBrains/PhpStorm2023.2/node/node-v18.15.0-win-x64/node",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\vaii\public\images" />
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\semestral_project\src\pages" />
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\semestral_project\public\images" />
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\semestral_project\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\vaii\public\images" />
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\semestral_project\src\components" />
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\semestral_project\public\images" />
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\semestral_project\public" />
+      <recent name="C:\Users\Patrik Kuric\PhpstormProjects\semestral_project\src\img" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="$APPLICATION_CONFIG_DIR$/node/node-v18.15.0-win-x64/node" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d14ee14-c572-4679-934a-3f69f85db7e3" name="Changes" comment="" />
+      <created>1696758702670</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696758702670</updated>
+      <workItem from="1696758703696" duration="21973000" />
+      <workItem from="1696846008342" duration="10000" />
+      <workItem from="1696854604707" duration="1574000" />
+      <workItem from="1696871255635" duration="16463000" />
+      <workItem from="1696949144422" duration="4052000" />
+      <workItem from="1697105533551" duration="11351000" />
+      <workItem from="1697275360929" duration="12798000" />
+      <workItem from="1697361289311" duration="11485000" />
+      <workItem from="1697565706957" duration="2040000" />
+      <workItem from="1697813419221" duration="1805000" />
+      <workItem from="1697899554246" duration="8621000" />
+      <workItem from="1697930028347" duration="2059000" />
+      <workItem from="1697967823711" duration="9113000" />
+      <workItem from="1697989654613" duration="6384000" />
+      <workItem from="1698014405230" duration="2591000" />
+      <workItem from="1698060582644" duration="889000" />
+      <workItem from="1698074892126" duration="4678000" />
+      <workItem from="1698154811559" duration="1775000" />
+      <workItem from="1698170274291" duration="13000" />
+      <workItem from="1698188738876" duration="1604000" />
+      <workItem from="1698232902991" duration="88000" />
+      <workItem from="1698242831470" duration="1209000" />
+      <workItem from="1698601276633" duration="706000" />
+      <workItem from="1698629540801" duration="86000" />
+      <workItem from="1698657297296" duration="2120000" />
+      <workItem from="1700218971589" duration="860000" />
+      <workItem from="1700219850473" duration="3119000" />
+      <workItem from="1700223030959" duration="4054000" />
+      <workItem from="1700228397663" duration="8048000" />
+      <workItem from="1700482622710" duration="471000" />
+      <workItem from="1701357625193" duration="43000" />
+      <workItem from="1701357705400" duration="1048000" />
+      <workItem from="1701360439736" duration="2197000" />
+      <workItem from="1701423289953" duration="7220000" />
+      <workItem from="1701602632187" duration="19226000" />
+      <workItem from="1701688660095" duration="1283000" />
+      <workItem from="1701690335241" duration="855000" />
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1698242901380</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698242901380</updated>
+    </task>
+    <task id="LOCAL-00002" summary="test">
+      <option name="closed" value="true" />
+      <created>1698244649439</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698244649439</updated>
+    </task>
+    <task id="LOCAL-00003" summary="clientside form data control">
+      <option name="closed" value="true" />
+      <created>1700234780766</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700234780766</updated>
+    </task>
+    <task id="LOCAL-00004" summary="clientside form data control">
+      <option name="closed" value="true" />
+      <created>1701690407311</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701690407311</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <MESSAGE value="test" />
+    <MESSAGE value="clientside form data control" />
+    <option name="LAST_COMMIT_MESSAGE" value="clientside form data control" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
