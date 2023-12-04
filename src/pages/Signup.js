@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
 export default function Signup() {
     const [isHover, setIsHover] = useState(false);
-    const [notification, setNotification] = useState('');
 
     const handleMouseEnter = () => {
         setIsHover(true);
@@ -12,7 +12,6 @@ export default function Signup() {
 
     const handleMouseLeave = () => {
         setIsHover(false);
-        setNotification("Hello, World!");
     };
 
     const buttonStyle = {
@@ -24,13 +23,7 @@ export default function Signup() {
         marginTop: "20px"
     };
 
-    const validateRegister = (event) => {
-        event.preventDefault();
-
-        const username = event.target.username.value;
-        const email = event.target.email.value;
-        const password = event.target.password.value;
-        const repeatPassword = event.target["repeat-password"].value;
+    const clientSideRegisterValidation = (username, email, password, repeatPassword) => {
 
         //errors
         if (username === "" || email === "" || password === "" || repeatPassword === "") {
@@ -58,6 +51,35 @@ export default function Signup() {
         }
 
         NotificationManager.success('Form data is valid. ', 'Success');
+    }
+
+    const validateRegister = async (event) => {
+        event.preventDefault();
+
+        const username = event.target.username.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        const repeatPassword = event.target["repeat-password"].value;
+
+        clientSideRegisterValidation(username, email, password, repeatPassword);
+
+        try {
+            const response = await axios.post('http://localhost:4000/users/register', {
+                username,
+                email,
+                password,
+                repeatPassword
+            });
+
+            NotificationManager.success(response.data.success, 'Success');
+        } catch (error) {
+
+            if (error.response) {
+                NotificationManager.error(error.response.data.error, 'Error');
+            } else {
+                console.error('Unexpected error:', error.message);
+            }
+        }
     };
 
     const validateLogin = (event) => {
@@ -71,7 +93,6 @@ export default function Signup() {
             NotificationManager.error('All fields must be filled out', 'Error');
         }
     };
-
     return (
         <>
             <div className="container mt-5">

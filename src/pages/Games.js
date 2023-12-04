@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import DropdownComponent from "../components/dropdownComponent";
 import ContentPanelItem from "../components/contentPanelItem";
 
 export default function Games() {
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:4000/games")
+            .then(response => {
+                console.log('API Response:', response.data);
+                setGames(response.data);
+            })
+            .catch(error => console.error('Error fetching games:', error));
+    }, []);
+
     return (
         <>
             <div style={{
@@ -21,7 +33,7 @@ export default function Games() {
                         className="col"
                     />
                     <DropdownComponent
-                        title={"Systems"}
+                        title={"Platform"}
                         items={["PC", "Console", "VR"]}
                         className="col"
                     />
@@ -29,12 +41,9 @@ export default function Games() {
             </div>
 
             <div className="contentPanelItems d-flex flex-wrap justify-content-center">
-                <ContentPanelItem title={"Elden Ring"} img={"Elden_Ring"}/>
-                <ContentPanelItem title={"Cyberpunk 2077 - Phantom Liberty"} img={"Cyberpunk"}/>
-                <ContentPanelItem title={"Lies of P"} img={"Lies_of_P"}/>
-                <ContentPanelItem title={"Lords of the Fallen"} img={"Lords of the Fallen"}/>
-                <ContentPanelItem title={"Star Wars Jedi: Survivor"} img={"Star_Wars_Jedi_Survivor"}/>
-                <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
+                {games.map((game) => (
+                    <ContentPanelItem key={game.title} title={game.title} img={game.imageUrl} />
+                ))}
             </div>
         </>
     );

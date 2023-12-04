@@ -28,6 +28,9 @@ export default function Navbar() {
                     <li className="nav-item nav-item-mainNavbar about">
                         <Link to="/about" className="nav-link" href="#">About</Link>
                     </li>
+                    <li className="nav-item nav-item-mainNavbar admin">
+                        <Link to="/admin" className="nav-link" href="#">Admin</Link>
+                    </li>
                     <li className="nav-item nav-item-mainNavbar signup">
                         <Link to="/sign-up" className="nav-link" href="#">SIGN UP</Link>
                     </li>
