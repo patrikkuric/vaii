@@ -71,14 +71,16 @@ export default function Signup() {
                 repeatPassword
             });
 
-            NotificationManager.success(response.data.success, 'Success');
         } catch (error) {
 
+/*
             if (error.response) {
                 NotificationManager.error(error.response.data.error, 'Error');
             } else {
                 console.error('Unexpected error:', error.message);
             }
+            */
+
         }
     };
 
@@ -92,6 +94,8 @@ export default function Signup() {
         if (username === "" || password === "") {
             NotificationManager.error('All fields must be filled out', 'Error');
         }
+
+        NotificationManager.success('Form data is valid. ', 'Success');
     };
     return (
         <>

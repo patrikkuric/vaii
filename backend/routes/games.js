@@ -42,7 +42,7 @@ router.post('/add-game', function (req, res) {
         });
 });
 
-router.post('/update-game', function (req, res) {
+router.put('/update-game', function (req, res) {
     const title = req.body.title;
     const updateData = req.body;
 

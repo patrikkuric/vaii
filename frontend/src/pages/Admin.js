@@ -106,9 +106,10 @@ export default function Admin() {
         if (imageUrl) updateData.imageUrl = imageUrl;
 
         try {
-            await axios.post('http://localhost:4000/games/update-game', updateData);
+            await axios.put('http://localhost:4000/games/update-game', updateData);
         } catch (error) {
             console.error('Unexpected error:', error.message);
+            return;
         }
 
         NotificationManager.success('Game has been successfully updated.', 'Success');
@@ -127,7 +128,10 @@ export default function Admin() {
 
         } catch (error) {
             console.error('Unexpected error:', error.message);
+            return;
         }
+
+        NotificationManager.success('Game has been successfully deleted.', 'Success');
     }
     return (
         <>
