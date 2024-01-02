@@ -106,7 +106,7 @@ export default function Admin() {
         if (imageUrl) updateData.imageUrl = imageUrl;
 
         try {
-            await axios.put('http://localhost:4000/games/update-game', updateData);
+            await axios.put(`http://localhost:4000/games/update-game/${title}`, updateData);
         } catch (error) {
             console.error('Unexpected error:', error.message);
             return;
@@ -122,7 +122,7 @@ export default function Admin() {
         const title = event.target.title.value;
 
         try {
-            await axios.post('http://localhost:4000/games/delete-game', {
+            await axios.post(`http://localhost:4000/games/delete-game/${title}`, {
                 title
             });
 

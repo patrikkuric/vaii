@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DropdownComponent from "../components/dropdownComponent";
 import ContentPanelItem from "../components/contentPanelItem";
+import {Link} from "react-router-dom";
 
 export default function Games() {
     const [games, setGames] = useState([]);
@@ -42,7 +43,11 @@ export default function Games() {
 
             <div className="contentPanelItems d-flex flex-wrap justify-content-center">
                 {games.map((game) => (
-                    <ContentPanelItem key={game.title} title={game.title} img={game.imageUrl} />
+                    <div>
+                        <Link to={`/games/${game.title}`} className="nav-link" href="#">
+                            <ContentPanelItem key={game.title} title={game.title} img={game.imageUrl} />
+                        </Link>
+                    </div>
                 ))}
             </div>
         </>

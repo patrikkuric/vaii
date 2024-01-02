@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Signup from "./pages/Signup";
 import Tech from "./pages/Tech";
 import Games from "./pages/Games";
+import GameDetails from "./pages/GameDetails";  // Import the new component
 import Admin from "./pages/Admin";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/sign-up" element={<Signup />} />
             <Route path="/games" element={<Games />} />
+            <Route path="/games/:gameName" element={<GameDetails />} />
             <Route path="/tech" element={<Tech />} />
             <Route path="/admin" element={<Admin />} />
         </Routes>
