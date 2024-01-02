@@ -12,6 +12,23 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:title', async (req, res) => {
+    const { title } = req.params;
+
+    try {
+        const game = await Game.findOne({ title: title });
+
+        if (game) {
+            res.json(game);
+        } else {
+            res.status(404).send(`Game with title '${title}' not found.`);
+        }
+    } catch (error) {
+        console.error('Error fetching game:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
 router.post('/add-game', function (req, res) {
     const { title, description, genre, platform, price, releaseDate, developer, publisher, imageUrl } = req.body;
 
@@ -42,8 +59,8 @@ router.post('/add-game', function (req, res) {
         });
 });
 
-router.put('/update-game', function (req, res) {
-    const title = req.body.title;
+router.put('/update-game/:title', function (req, res) {
+    const { title } = req.params;
     const updateData = req.body;
 
     Game.findOneAndUpdate(
@@ -65,7 +82,7 @@ router.put('/update-game', function (req, res) {
         });
 });
 
-router.post('/delete-game', function (req, res) {
+router.post('/delete-game/:title', function (req, res) {
     const title = req.body.title;
 
     Game.findOneAndDelete({ title: title })
@@ -83,7 +100,5 @@ router.post('/delete-game', function (req, res) {
             res.status(500).send('Internal Server Error');
         });
 });
-
-
 
 module.exports = router;
