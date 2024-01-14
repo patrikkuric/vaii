@@ -3,40 +3,30 @@ const Game = require("../models/game");
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    try {
-        const games = await Game.find();
-        res.json(games);
-    } catch (error) {
-        console.error('Error fetching games:', error);
-        res.status(500).send('Internal Server Error');
-    }
+    const games = await Game.find();
+    res.json(games);
 });
 
 router.get('/:title', async (req, res) => {
     const { title } = req.params;
 
-    try {
-        const game = await Game.findOne({ title: title });
+    const game = await Game.findOne({ title: title });
 
-        if (game) {
-            res.json(game);
-        } else {
-            res.status(404).send(`Game with title '${title}' not found.`);
-        }
-    } catch (error) {
-        console.error('Error fetching game:', error);
-        res.status(500).send('Internal Server Error');
+    if (game) {
+        res.json(game);
+    } else {
+        res.status(404).send(`Game with title '${title}' not found.`);
     }
 });
 
 router.post('/add-game', function (req, res) {
-    const { title, description, genre, platform, price, releaseDate, developer, publisher, imageUrl } = req.body;
+    const { title, description, genres, platforms, price, releaseDate, developer, publisher, imageUrl } = req.body;
 
     const game = new Game({
         title,
         description,
-        genre,
-        platform,
+        genres,
+        platforms,
         price,
         releaseDate,
         developer,
@@ -52,9 +42,6 @@ router.post('/add-game', function (req, res) {
             if (error.code === 11000) { // MongoDB duplicate key error code
                 console.log('Cannot create this game, a game with this title already exists!');
                 res.status(400).send('Cannot create this game, a game with this title already exists!');
-            } else {
-                console.log(error);
-                res.status(500).send('Internal Server Error');
             }
         });
 });
@@ -76,10 +63,12 @@ router.put('/update-game/:title', function (req, res) {
                 res.status(404).send(`Game with title '${title}' not found.`);
             }
         })
+        /*
         .catch((error) => {
             console.log(error);
             res.status(500).send('Internal Server Error');
         });
+        */
 });
 
 router.post('/delete-game/:title', function (req, res) {
@@ -95,10 +84,12 @@ router.post('/delete-game/:title', function (req, res) {
                 res.status(404).send(`Game with title '${title}' was not not found.`);
             }
         })
+        /*
         .catch((error) => {
             console.log(error);
             res.status(500).send('Internal Server Error');
         });
+        */
 });
 
 module.exports = router;

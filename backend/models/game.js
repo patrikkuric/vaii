@@ -11,14 +11,14 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    genre: {
+    genres: [{
         type: String,
         required: true,
-    },
-    platform: {
+    }],
+    platforms: [{
         type: String,
         required: true,
-    },
+    }],
     price: {
         type: Number,
         required: true,
