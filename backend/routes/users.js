@@ -12,7 +12,7 @@ router.post('/login', async function (req, res, next) {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.status(400).json({ error: 'Username and password are required' });
+    return res.status(400).json({ error: 'Username and password are both required' });
   }
 
   try {
@@ -33,7 +33,6 @@ router.post('/login', async function (req, res, next) {
 
     res.status(200).json({ token, user: user.username, role: user.role });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -46,35 +45,27 @@ router.post('/register', async function (req, res, next) {
   //console.log(repeatPassword);
 
   if (!username || !email || !password || !repeatPassword) {
-    console.log('All fields must be filled out');
     return res.status(400).json({error: 'All fields must be filled out'});
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    console.log('Invalid email address');
     return res.status(400).json({error: 'Invalid email address'});
   }
 
   if (password !== repeatPassword) {
-    console.log('Passwords do not match');
     return res.status(400).json({error: 'Passwords do not match'});
   }
 
-  if (username.length < 6 || /\s/.test(username)) {
-    console.log('Username must be at least 6 characters long and should not contain spaces');
+  if (username.length < 6 || username.includes(' ')) {
     return res.status(400).json({error: 'Username must be at least 6 characters long and should not contain spaces'});
   }
 
   if (password.length < 8 || !/[A-Z]/.test(password) || !/[0-9!@#$%^&*(),.?":{}|<>]/.test(password)) {
-    console.log('Password must be at least 8 characters long, contain at least one uppercase letter, and contain at least one number or special character');
     return res.status(400).json({error: 'Password must be at least 8 characters long, contain at least one uppercase letter, and contain at least one number or special character'});
   }
 
-  console.log('Form data is valid');
-
-  const saltRounds = 10;
-  const salt = await bcrypt.genSalt(saltRounds);
+  const salt = await bcrypt.genSalt(10);
   const hash = await bcrypt.hash(password, salt);
 
   try {
