@@ -51,20 +51,25 @@ export default function Admin() {
 
         const title = event.target.title.value;
         const description = event.target.description.value;
-        const genre = event.target.genre.value;
-        const platform = event.target.platform.value;
+        const genres = Array.from(event.target.genre.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+        const platforms = Array.from(event.target.platform.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
         const price = event.target.price.value;
         const releaseDate = event.target.releaseDate.value;
         const developer = event.target.developer.value;
         const publisher = event.target.publisher.value;
         const imageUrl = event.target.imageUrl.value;
 
+
         try {
             await axios.post('http://localhost:4000/games/add-game', {
                 title,
                 description,
-                genre,
-                platform,
+                genres,
+                platforms,
                 price,
                 releaseDate,
                 developer,
@@ -85,20 +90,24 @@ export default function Admin() {
 
         const title = event.target.title.value;
         const description = event.target.description.value;
-        const genre = event.target.genre.value;
-        const platform = event.target.platform.value;
+        const genres = Array.from(event.target.genre.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+        const platforms = Array.from(event.target.platform.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
         const price = event.target.price.value;
         const releaseDate = event.target.releaseDate.value;
         const developer = event.target.developer.value;
         const publisher = event.target.publisher.value;
         const imageUrl = event.target.imageUrl.value;
 
-        console.log(title);
+        //console.log(title);
         const updateData = {};
         if (title) updateData.title = title;
         if (description) updateData.description = description;
-        if (genre) updateData.genre = genre;
-        if (platform) updateData.platform = platform;
+        if (genres) updateData.genres = genres;
+        if (platforms) updateData.platforms = platforms;
         if (price) updateData.price = price;
         if (releaseDate) updateData.releaseDate = releaseDate;
         if (developer) updateData.developer = developer;
@@ -133,6 +142,7 @@ export default function Admin() {
 
         NotificationManager.success('Game has been successfully deleted.', 'Success');
     }
+
     return (
         <>
             <div>
@@ -178,16 +188,17 @@ export default function Admin() {
 
                         <label htmlFor="description" className="form-label">Description</label>
                         <textarea className="form-control" name="description" required/>
-
+                        {/*
                         <label htmlFor="genre" className="form-label">Genre</label>
                         <input type="text" className="form-control" name="genre" required/>
 
                         <label htmlFor="platform" className="form-label">Platform</label>
                         <input type="text" className="form-control" name="platform" required/>
-
-                        {/*
-                        <label htmlFor="genre" className="form-label">Genre</label>
-                        <select className="form-control" name="genre" required>
+*/}
+                        <label htmlFor="genre" className="form-label">
+                            Genres
+                        </label>
+                        <select className="form-control" name="genre" multiple required>
                             <option value="Action">Action</option>
                             <option value="Adventure">Adventure</option>
                             <option value="Fighting">Fighting</option>
@@ -197,13 +208,15 @@ export default function Admin() {
                             <option value="RPG">RPG</option>
                         </select>
 
-                        <label htmlFor="platform" className="form-label">Platform</label>
-                        <select className="form-control" name="platform" required>
+                        <label htmlFor="platform" className="form-label">
+                            Platforms
+                        </label>
+                        <select className="form-control" name="platform" multiple required>
                             <option value="PC">PC</option>
                             <option value="Console">Console</option>
                             <option value="VR">VR</option>
+                            <option value="Mobile">Mobile</option>
                         </select>
-                        */}
 
                         <label htmlFor="price" className="form-label">Price (Eur)</label>
                         <input type="number" className="form-control" name="price" min="0" required/>
@@ -248,11 +261,28 @@ export default function Admin() {
                             <label htmlFor="description" className="form-label">Description</label>
                             <textarea className="form-control" name="description"/>
 
-                            <label htmlFor="genre" className="form-label">Genre</label>
-                            <input type="text" className="form-control" name="genre"/>
+                            <label htmlFor="genre" className="form-label">
+                                Genres
+                            </label>
+                            <select className="form-control" name="genre" multiple required>
+                                <option value="Action">Action</option>
+                                <option value="Adventure">Adventure</option>
+                                <option value="Fighting">Fighting</option>
+                                <option value="FPS">FPS</option>
+                                <option value="Platformer">Platformer</option>
+                                <option value="Racing">Racing</option>
+                                <option value="RPG">RPG</option>
+                            </select>
 
-                            <label htmlFor="platform" className="form-label">Platform</label>
-                            <input type="text" className="form-control" name="platform"/>
+                            <label htmlFor="platform" className="form-label">
+                                Platforms
+                            </label>
+                            <select className="form-control" name="platform" multiple required>
+                                <option value="PC">PC</option>
+                                <option value="Console">Console</option>
+                                <option value="VR">VR</option>
+                                <option value="Mobile">Mobile</option>
+                            </select>
 
                             <label htmlFor="price" className="form-label">Price (Eur)</label>
                             <input type="number" className="form-control" name="price" min="0"/>

@@ -64,6 +64,17 @@ h1, h2 {
     /*  background-color: #595959; */
 }
 
+.account a {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+      /*  border: 0.12rem solid #FFF;*/
+    font-weight: bold;
+    color: #ffbb17 !important;
+}
+
+.account:hover {
+    /*  background-color: #595959; */
+}
+
 .carousel {
     max-width: 100%;
     max-height: 540px;
@@ -82,9 +93,8 @@ h1, h2 {
 }
 
 .contentPanelItem {
-    display: inline-block;
     width: 320px;
-    margin: 50px 50px 0 50px;
+    margin: 25px 25px 25px 25px;
 }
 
 .contentPanelItem img {
@@ -103,6 +113,14 @@ h1, h2 {
 
 .contentPanelItems{
     align-self: center;
+}
+
+.nav-link:hover .contentPanelItem figcaption {
+    color: #4bd2ff;
+}
+
+.nav-link:hover .contentPanelItem {
+    opacity: 0.75;
 }
 
 .navbarOne {

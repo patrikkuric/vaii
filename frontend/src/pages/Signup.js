@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import useTokenStore from "../token";
 
 export default function Signup() {
+    const { setToken } = useTokenStore();
+    const { setUsername } = useTokenStore();
+    const { setRole } = useTokenStore();
     const [isHover, setIsHover] = useState(false);
 
     const handleMouseEnter = () => {
@@ -41,7 +45,7 @@ export default function Signup() {
         }
 
         // warnings
-        if (username.length < 6 || /\s/.test(username)) {
+        if (username.length < 6 || username.includes(' ')) {
             NotificationManager.warning('Username must be at least 6 characters long and should not contain spaces', 'Warning');
             return;
         }
@@ -72,7 +76,6 @@ export default function Signup() {
             });
 
         } catch (error) {
-
 /*
             if (error.response) {
                 NotificationManager.error(error.response.data.error, 'Error');
@@ -84,7 +87,7 @@ export default function Signup() {
         }
     };
 
-    const validateLogin = (event) => {
+    const validateLogin = async (event) => {
         event.preventDefault();
 
         const username = event.target.username.value;
@@ -96,7 +99,22 @@ export default function Signup() {
         }
 
         NotificationManager.success('Form data is valid. ', 'Success');
+
+        try {
+            const response = await axios.post('http://localhost:4000/users/login', {
+                username,
+                password,
+            });
+
+            const { token, user, role } = response.data;
+            setToken(token);
+            setUsername(user);
+            setRole(role);
+        } catch (error) {
+            //
+        }
     };
+
     return (
         <>
             <div className="container mt-5">

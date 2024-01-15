@@ -44,6 +44,21 @@ export default function Home() {
             <Navbar2 />
 
             <div className="contentPanelItems d-flex flex-wrap justify-content-center">
+
+                <Link to={`/games/Elden Ring`} className="nav-link" href="#">
+                    <ContentPanelItem title={"Elden Ring"} img={"Elden_Ring"} />
+                </Link>
+                <Link to={`/games/Cyberpunk 2077`} className="nav-link" href="#">
+                    <ContentPanelItem title={"Cyberpunk 2077"} img={"Cyberpunk"} />
+                </Link>
+                <Link to={`/games/Lies of P`} className="nav-link" href="#">
+                    <ContentPanelItem title={"Lies of P"} img={"Lies_of_P"} />
+                </Link>
+                <Link to={`/games/Lords of the Fallen`} className="nav-link" href="#">
+                    <ContentPanelItem title={"Lords of the Fallen"} img={"Lords of the Fallen"} />
+                </Link>
+
+                {/*
                 <ContentPanelItem title={"Elden Ring"} img={"Elden_Ring"}/>
                 <ContentPanelItem title={"Cyberpunk 2077 - Phantom Liberty"} img={"Cyberpunk"}/>
                 <ContentPanelItem title={"Lies of P"} img={"Lies_of_P"}/>
@@ -55,6 +70,7 @@ export default function Home() {
                 <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
                 <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
                 <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
+                */}
             </div>
         </>
     );
