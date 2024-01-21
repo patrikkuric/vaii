@@ -24,11 +24,11 @@ const usersRouter = require('./routes/users');
 const gamesRouter = require('./routes/games');
 const tokenRouter = require('./routes/token');
 const reviewsRouter = require('./routes/reviews');
+const ordersRouter = require('./routes/orders');
 app.use('/users', usersRouter);
 app.use('/games', gamesRouter);
 app.use('/token', tokenRouter);
 app.use('/reviews', reviewsRouter);
-
-
+app.use('/orders', ordersRouter);
 
 module.exports = app;

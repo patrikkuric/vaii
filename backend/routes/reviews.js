@@ -25,6 +25,36 @@ router.get('/:gameID', async (req, res) => {
         res.status(500).send('Internal Server Error');
     }
 });
+
+router.get('/user/:username', async (req, res) => {
+    const { username } = req.params;
+
+    try {
+        const user = await User.findOne({ username: username });
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        const userReviews = await Review.find({ user: user._id })
+            .select('rating content createdAt game')
+            .populate('game');
+
+        const formattedReviews = userReviews.map(review => ({
+            rating: review.rating,
+            content: review.content,
+            game: review.game,
+            createdAt: review.createdAt,
+            gameTitle: review.game.title
+        }));
+
+        res.status(200).json(formattedReviews);
+    } catch (error) {
+        console.error(`Error fetching reviews for user '${username}':`, error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
 router.post('/add-review', async function (req, res) {
     const { reviewText, rating, username, gameTitle, date } = req.body;
 
@@ -57,6 +87,7 @@ router.post('/add-review', async function (req, res) {
 
 router.post('/update-review', async (req, res) => {
     const { reviewID, updatedText } = req.body;
+    console.log(reviewID);
 
     try {
         const review = await Review.findByIdAndUpdate(reviewID, { content: updatedText }, { new: true });

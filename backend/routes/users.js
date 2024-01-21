@@ -76,7 +76,7 @@ router.post('/register', async function (req, res, next) {
     res.status(200).send("Account created successfully.");
   } catch (error) {
     if (error.code === 11000) { // MongoDB duplicate key error code
-      return res.status(400).json({ error: 'Username or email already exists' });
+      return res.status(400).json({ error: 'Username or email is already taken' });
     }
   }
 });
