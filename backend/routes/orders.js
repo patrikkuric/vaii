@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/order');
-const User = require('../models/user');  // Import the User model
+const User = require('../models/user');
 
-router.post('/add-order', async (req, res) => {
+router.post('/add-order', async function (req, res) {
     const { username, gameID, orderedAt } = req.body;
 
     try {
@@ -27,13 +27,13 @@ router.post('/add-order', async (req, res) => {
 
         const savedOrder = await order.save();
 
-        res.status(201).json(savedOrder);
+        res.status(200).json(savedOrder);
     } catch (error) {
-        res.status(500).send('Error creating order:');
+        res.status(500).send('Error creating order');
     }
 });
 
-router.get('/user/:username', async (req, res) => {
+router.get('/user/:username', async function (req, res) {
     const { username } = req.params;
 
     try {
@@ -49,8 +49,7 @@ router.get('/user/:username', async (req, res) => {
 
         res.status(200).json(userOrders);
     } catch (error) {
-        console.error(`Error fetching orders for user '${username}':`, error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('`Error fetching orders');
     }
 });
 
@@ -68,7 +67,7 @@ router.post('/delete-order', async function (req, res) {
 
         res.status(200).send(orderToBeDeleted);
     } catch (error) {
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Error deleting the order');
     }
 });
 

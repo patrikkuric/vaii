@@ -14,24 +14,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get('/', async (req, res) => {
+router.get('/', async function (req, res) {
     const games = await Game.find();
     res.json(games);
 });
 
-router.get('/:title', async (req, res) => {
+router.get('/:title', async function (req, res) {
     const { title } = req.params;
 
     const game = await Game.findOne({ title: title });
 
     if (game) {
-        res.json(game);
+        res.status(200).json(game);
     } else {
         res.status(404).send(`Game with title '${title}' not found.`);
     }
 });
 
-router.post('/add-game', upload.single('image'), async (req, res) => {
+router.post('/add-game', upload.single('image'), async function (req, res) {
     const { title, description, genres, platforms, price, releaseDate, developer, publisher } = req.body;
 
     const imageUrl = req.file ? req.file.filename : null;
@@ -50,92 +50,64 @@ router.post('/add-game', upload.single('image'), async (req, res) => {
 
     try {
         const savedGame = await game.save();
-        res.json(savedGame);
+        res.status(200).json(savedGame);
     } catch (error) {
         if (error.code === 11000) {
-            console.log('Cannot create this game, a game with this title already exists!');
             res.status(400).send('Cannot create this game, a game with this title already exists!');
         } else {
-            console.error('Unexpected error:', error.message);
-            res.status(500).send('Internal Server Error');
+            res.status(500).send('Server-side error');
         }
     }
 });
 
-router.put('/update-game/:title', upload.single('image'), async (req, res) => {
+router.put('/update-game/:title', upload.single('image'), async function (req, res) {
     const { title } = req.params;
 
     const updateData = {};
 
     const description = req.body.description;
-    if (description) {
-        updateData.description = description;
-    }
-
     const genres = req.body.genres;
-    if (genres) {
-        updateData.genres = genres;
-    }
-
     const platforms = req.body.platforms;
-    if (platforms) {
-        updateData.platforms = platforms;
-    }
-
     const price = req.body.price;
-    if (price) {
-        updateData.price = price;
-    }
-
     const releaseDate = req.body.releaseDate;
-    if (releaseDate) {
-        updateData.releaseDate = releaseDate;
-    }
-
     const developer = req.body.developer;
-    if (developer) {
-        updateData.developer = developer;
-    }
-
     const publisher = req.body.publisher;
-    if (publisher) {
-        updateData.publisher = publisher;
-    }
 
-    if (req.file) {
-        updateData.imageUrl = req.file.filename;
-    }
+    if (description) updateData.description = description;
+    if (genres) updateData.genres = genres;
+    if (platforms) updateData.platforms = platforms;
+    if (price) updateData.price = price;
+    if (releaseDate) updateData.releaseDate = releaseDate;
+    if (developer) updateData.developer = developer;
+    if (publisher) updateData.publisher = publisher;
+    if (req.file) updateData.imageUrl = req.file.filename;
 
     try {
         const updatedGame = await Game.findOneAndUpdate({ title: title }, updateData, { new: true });
 
         if (updatedGame) {
-            res.json(updatedGame);
+            res.status(200).json(updatedGame);
         } else {
-            console.log(`Game with title '${title}' not found.`);
             res.status(404).send(`Game with title '${title}' not found.`);
         }
     } catch (error) {
-        console.error('Unexpected error:', error.message);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Server-side Error');
     }
 });
 
-router.post('/delete-game/:title', async (req, res) => {
+router.post('/delete-game/:title', async function (req, res) {
     const { title } = req.params;
 
     try {
         const result = await Game.findOneAndDelete({ title: title });
 
         if (result) {
-            console.log(`Game with title '${title}' has been deleted successfully.`);
             res.send(`Game with title '${title}' has been deleted successfully.`);
         } else {
-            console.log(`Game with title '${title}' was not found.`);
             res.status(404).send(`Game with title '${title}' was not found.`);
         }
     } catch (error) {
-        console.error('Unexpected error:', error.message);
+        res.status(500).send('Server-side Error');
     }
 });
 

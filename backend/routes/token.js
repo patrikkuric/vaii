@@ -1,10 +1,8 @@
 const express = require('express');
-const User = require("../models/user");
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const {request} = require("express");
 
-router.get('/', (req, res) => {
+router.get('/', function (req, res)  {
    // console.log(req.headers);
     const header = req.headers["authorization"];
     const token = header && header.split(' ')[1];

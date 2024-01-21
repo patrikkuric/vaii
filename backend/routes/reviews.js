@@ -1,32 +1,30 @@
 const express = require('express');
 const Review = require("../models/review");
 const Game = require("../models/game");
-const User = require("../models/user"); // Import the User model
+const User = require("../models/user");
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', async function (req, res) {
     try {
         const reviews = await Review.find().populate('user');
         res.status(200).json(reviews);
     } catch (error) {
-        console.error('Error fetching reviews:', error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Error fetching reviews:');
     }
 });
 
-router.get('/:gameID', async (req, res) => {
+router.get('/:gameID', async function (req, res) {
     const { gameID } = req.params;
 
     try {
         const reviews = await Review.find({ game: gameID }).populate('user').populate('game');
         res.status(200).json(reviews);
     } catch (error) {
-        console.log(`Error fetching reviews for game '${gameID}':`);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send(`Error fetching reviews for game '${gameID}':`);
     }
 });
 
-router.get('/user/:username', async (req, res) => {
+router.get('/user/:username', async function (req, res)  {
     const { username } = req.params;
 
     try {
@@ -49,8 +47,7 @@ router.get('/user/:username', async (req, res) => {
 
         res.status(200).json(formattedReviews);
     } catch (error) {
-        console.error(`Error fetching reviews for user '${username}':`, error);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send(`Error fetching reviews for user '${username}'`);
     }
 });
 
@@ -79,15 +76,15 @@ router.post('/add-review', async function (req, res) {
 
         const savedReview = await review.save();
 
-        res.status(201).send(savedReview);
+        res.status(200).send(savedReview);
     } catch (error) {
-        console.error('Error saving review:', error);
+        res.status(500).send('Error saving review');
     }
 });
 
-router.post('/update-review', async (req, res) => {
+router.post('/update-review', async function (req, res)  {
     const { reviewID, updatedText } = req.body;
-    console.log(reviewID);
+    //console.log(reviewID);
 
     try {
         const review = await Review.findByIdAndUpdate(reviewID, { content: updatedText }, { new: true });
@@ -98,7 +95,7 @@ router.post('/update-review', async (req, res) => {
 
         res.status(200).json(review);
     } catch (error) {
-        console.error('Error updating review:', error);
+        res.status(500).send('Error updating review');
     }
 });
 
@@ -115,7 +112,7 @@ router.post('/delete-review', async function (req, res) {
 
         res.status(200).send(deletedReview);
     } catch (error) {
-        console.error('Error deleting review:', error);
+        res.status(500).send('Error deleting review');
     }
 });
 
