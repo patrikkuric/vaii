@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import AdminButton from "../components/adminButton";
 import axios from "axios";
 import {NotificationManager} from "react-notifications";
 import 'react-notifications/lib/notifications.css';
 import useTokenStore from "../token";
+import MyButton from "../components/myButton";
 
 export default function Admin() {
     const { role} = useTokenStore();
@@ -73,8 +73,13 @@ export default function Admin() {
         formData.append('title', event.target.title.value);
         formData.append('description', event.target.description.value);
 
-        const selectedGenres = Array.from(event.target.genre.options).filter(option => option.selected).map(option => option.value);
-        const selectedPlatforms = Array.from(event.target.platform.options).filter(option => option.selected).map(option => option.value);
+        const selectedGenres = Array.from(event.target.genre.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+        const selectedPlatforms = Array.from(event.target.platform.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+
         selectedGenres.forEach((genre, index) => {
             formData.append(`genres[${index}]`, genre);
         });
@@ -116,53 +121,38 @@ export default function Admin() {
         event.preventDefault();
 
         const title = event.target.title.value;
+        const description = event.target.description.value;
+        const selectedGenres = Array.from(event.target.genre.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+        const selectedPlatforms = Array.from(event.target.platform.options)
+            .filter(option => option.selected)
+            .map(option => option.value);
+        const price = event.target.price.value;
+        const releaseDate = event.target.releaseDate.value;
+        const developer = event.target.developer.value;
+        const publisher = event.target.publisher.value;
+        const imageFile = event.target.image.files[0];
 
         const dataToSend = new FormData();
         dataToSend.append('title', title);
 
-        const description = event.target.description.value;
-        if (description) {
-            dataToSend.append('description', description);
-        }
-
-        const selectedGenres = Array.from(event.target.genre.options).filter(option => option.selected).map(option => option.value);
+        if (description) dataToSend.append('description', description);
         if (selectedGenres.length > 0) {
             selectedGenres.forEach((genre, index) => {
                 dataToSend.append(`genres[${index}]`, genre);
             });
         }
-
-        const selectedPlatforms = Array.from(event.target.platform.options).filter(option => option.selected).map(option => option.value);
         if (selectedPlatforms.length > 0) {
             selectedPlatforms.forEach((platform, index) => {
                 dataToSend.append(`platforms[${index}]`, platform);
             });
         }
-
-        const price = event.target.price.value;
-        if (price) {
-            dataToSend.append('price', price);
-        }
-
-        const releaseDate = event.target.releaseDate.value;
-        if (releaseDate) {
-            dataToSend.append('releaseDate', releaseDate);
-        }
-
-        const developer = event.target.developer.value;
-        if (developer) {
-            dataToSend.append('developer', developer);
-        }
-
-        const publisher = event.target.publisher.value;
-        if (publisher) {
-            dataToSend.append('publisher', publisher);
-        }
-
-        const imageFile = event.target.image.files[0];
-        if (imageFile) {
-            dataToSend.append('image', imageFile);
-        }
+        if (price) dataToSend.append('price', price);
+        if (releaseDate) dataToSend.append('releaseDate', releaseDate);
+        if (developer) dataToSend.append('developer', developer);
+        if (publisher) dataToSend.append('publisher', publisher);
+        if (imageFile) dataToSend.append('image', imageFile);
 
         try {
             await axios.put(`http://localhost:4000/games/update-game/${title}`, dataToSend, {
@@ -209,17 +199,20 @@ export default function Admin() {
                     gap: '20px'
                 }}>
                     <div className="row row-cols-1 row-cols-md-3 text-center">
-                        <AdminButton
+                        <MyButton
                             title={"Add a game"}
                             onClick={handleCreateButtonClick}
+                            p_colorHover={"#4bd2ff"}
                         />
-                        <AdminButton
+                        <MyButton
                             title={"Update a game"}
                             onClick={handleUpdateButtonClick}
+                            p_colorHover={"#4bd2ff"}
                         />
-                        <AdminButton
+                        <MyButton
                             title={"Delete a game"}
                             onClick={handleDeleteButtonClick}
+                            p_colorHover={"#4bd2ff"}
                         />
                     </div>
                 </div>
@@ -242,13 +235,7 @@ export default function Admin() {
 
                         <label htmlFor="description" className="form-label">Description</label>
                         <textarea className="form-control" name="description" required/>
-                        {/*
-                        <label htmlFor="genre" className="form-label">Genre</label>
-                        <input type="text" className="form-control" name="genre" required/>
 
-                        <label htmlFor="platform" className="form-label">Platform</label>
-                        <input type="text" className="form-control" name="platform" required/>
-*/}
                         <label htmlFor="genre" className="form-label">
                             Genres
                         </label>

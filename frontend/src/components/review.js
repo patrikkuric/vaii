@@ -7,11 +7,10 @@ import { NotificationManager } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 import { Modal, Button, Form } from "react-bootstrap";
 
-export default function Review({ _id, text, rating, date, currentUser, onUpdate, onDelete, noIcons }) {
+export default function Review({ _id, text, rating, date, currentUser, onUpdate, onDelete, icons = true }) {
     const { username, role } = useTokenStore();
     const [showModal, setShowModal] = useState(false);
     const [updatedText, setUpdatedText] = useState(text);
-
     const handleUpdateReview = async (event) => {
         event.preventDefault();
 
@@ -46,19 +45,23 @@ export default function Review({ _id, text, rating, date, currentUser, onUpdate,
     const generateStars = () => {
         return (
             <div>
-                {[...Array(rating)].map((_, index) => (
-                    <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} key={index} />
+                {[...Array(rating)].map(() => (
+                    <FontAwesomeIcon icon={faStar} style={{ color: "#FFD43B" }} />
                 ))}
 
-                {[...Array(5 - rating)].map((_, index) => (
-                    <FontAwesomeIcon icon={faStar} key={index} />
+                {[...Array(5 - rating)].map(() => (
+                    <FontAwesomeIcon icon={faStar} />
                 ))}
             </div>
         );
     };
 
-    const handleShowModal = () => setShowModal(true);
-    const handleCloseModal = () => setShowModal(false);
+    const handleShowModal = () => {
+        setShowModal(true);
+    }
+    const handleCloseModal = () =>  {
+        setShowModal(false);
+    }
 
     return (
         <div className="col d-flex align-items-stretch">
@@ -74,7 +77,7 @@ export default function Review({ _id, text, rating, date, currentUser, onUpdate,
                 <div className="mt-2">
                     <strong>
                         {currentUser} &nbsp;
-                        {(role === "Administrator" || currentUser === username) && (!noIcons) ? (
+                        {(role === "Administrator" || currentUser === username) && (icons) ? (
                             <>
                                 <i className="fa-solid fa-pencil" onClick={handleShowModal}></i> &nbsp;
                                 <i className="fa-solid fa-x" style={{ color: "#ff0000" }} onClick={handleDeleteReview}></i>

@@ -17,7 +17,7 @@ function App() {
     const { setUsername, setRole  } = useTokenStore();
 
     useEffect(() => {
-        const verifyToken = async () => {
+        const verifyToken = async function () {
             try {
                 const response = await axios
                     .get("http://localhost:4000/token", {headers: {Authorization: "Bearer " + localStorage.getItem("token")}})

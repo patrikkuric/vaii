@@ -11,9 +11,6 @@ export default function DropdownComponent({ title, items, onSelect, onClear }) {
         setIsHover(false);
     };
 
-    const handleItemClick = (selectedValue) => {
-        onSelect(selectedValue);
-    };
     const handleClearClick = () => {
         onClear();
     };
@@ -52,8 +49,8 @@ export default function DropdownComponent({ title, items, onSelect, onClear }) {
                             None
                         </div>
                     </li>
-                    {items.map((item, index) => (
-                        <li key={index}>
+                    {items.map((item) => (
+                        <li>
                             <div
                                 className="dropdown-item"
                                 onClick={() => onSelect(item)}

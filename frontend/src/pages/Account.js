@@ -94,7 +94,7 @@ export default function Account() {
                             currentUser={username}
                             text={review.content}
                             date={new Date(review.createdAt).toLocaleDateString()}
-                            noIcons={true}
+                            icons={false}
                         />
                         </div>
                     ))}

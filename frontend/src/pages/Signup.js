@@ -40,7 +40,6 @@ export default function Signup() {
             NotificationManager.error('All fields must be filled out', 'Error');
             return;
         }
-
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setErrMessage('Invalid email address');
@@ -121,7 +120,7 @@ export default function Signup() {
                             <div className="card-header">
                                 <ul className="nav nav-tabs card-header-tabs">
                                     <li className="nav-item overflow-hidden nav-item-signup">
-                                        <a onClick={() => setErrMessage('')}className="nav-link active" id="register-tab" data-bs-toggle="tab" href="#register">Register</a>
+                                        <a onClick={() => setErrMessage('')} className="nav-link active" id="register-tab" data-bs-toggle="tab" href="#register">Register</a>
                                     </li>
                                     <li className="nav-item overflow-hidden nav-item-signup mx-2">
                                         <a onClick={() => setErrMessage('')} className="nav-link" id="login-tab" data-bs-toggle="tab" href="#login">Login</a>

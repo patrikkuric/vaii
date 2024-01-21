@@ -18,7 +18,6 @@ export default function Games() {
         axios
             .get("http://localhost:4000/games")
             .then((response) => {
-                console.log('API Response:', response.data);
                 setGames(response.data);
             })
             .catch((error) => console.error('Error fetching games:', error));
@@ -92,6 +91,7 @@ export default function Games() {
                     </div>
                 </div>
             </div>
+
             <div className="container contentPanelItems d-flex flex-wrap justify-content-center" style={{maxWidth: "1520px"}}>
                 {filteredGames.map((game) => (
                     <div key={game.title}>

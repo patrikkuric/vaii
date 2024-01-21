@@ -140,17 +140,6 @@ const GameDetails = () => {
                         </div>
                     </div>
 
-                    {/*
-                    <div className="row mt-5">
-                        <div className="col-md-12 d-flex justify-content-center flex-wrap">
-                            <Link to="/games" className="mb-2 me-md-2">
-                                <MyButton title="Back" />
-                            </Link>
-                            <MyButton title="Add to cart" p_colorBorder={"#a6f167"} p_colorText={"#a6f167"} p_colorHover={"#bfff72"} p_colorHoverBg={"#505931"}/>
-                        </div>
-                    </div>
-                    */}
-
                     <div className="row mt-5 col-md-9">
                         <div className="mb-2" style={{ color: "white", wordWrap: "break-word", fontSize: "2rem"}}>
                             <strong>Write a short review</strong>
@@ -219,7 +208,21 @@ const GameDetails = () => {
                     </div>
                 </div>
             ) : (
-                <p style={{ color: "white" }}>Game not found.</p>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '80vh',
+                        color: 'white',
+                        fontSize: '2rem',
+                        fontWeight: 'bold',
+                        marginTop: '5rem'
+                    }}
+                >
+                    Game not found.
+                </div>
             )}
         </div>
     );
