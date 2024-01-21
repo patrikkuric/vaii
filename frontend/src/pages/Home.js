@@ -17,6 +17,7 @@ export default function Home() {
             .catch((error) => console.error('Error fetching games:', error));
 
     }, []);
+
     return (
         <>
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
@@ -80,7 +81,6 @@ export default function Home() {
 
                 <div className="contentPanelItems d-flex flex-wrap justify-content-center">
                     {games
-                        .slice()
                         .sort(() => Math.random() - 0.5)
                         .slice(0, 4)
                         .map((game) => (

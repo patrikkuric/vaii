@@ -7,9 +7,8 @@ import { NotificationManager } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 import { Modal, Button, Form } from "react-bootstrap";
 
-export default function Review({ _id, text, rating, date, currentUser, onUpdate, onDelete }) {
+export default function Review({ _id, text, rating, date, currentUser, onUpdate, onDelete, noIcons }) {
     const { username, role } = useTokenStore();
-
     const [showModal, setShowModal] = useState(false);
     const [updatedText, setUpdatedText] = useState(text);
 
@@ -75,7 +74,7 @@ export default function Review({ _id, text, rating, date, currentUser, onUpdate,
                 <div className="mt-2">
                     <strong>
                         {currentUser} &nbsp;
-                        {role === "Administrator" || currentUser === username ? (
+                        {(role === "Administrator" || currentUser === username) && (!noIcons) ? (
                             <>
                                 <i className="fa-solid fa-pencil" onClick={handleShowModal}></i> &nbsp;
                                 <i className="fa-solid fa-x" style={{ color: "#ff0000" }} onClick={handleDeleteReview}></i>

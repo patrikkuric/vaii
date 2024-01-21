@@ -4,6 +4,7 @@ import axios from "axios";
 import MyButton from "../components/myButton";
 import Review from "../components/review";
 import useTokenStore from "../token";
+import {NotificationManager} from "react-notifications";
 
 const GameDetails = () => {
     const { gameName } = useParams();
@@ -62,6 +63,25 @@ const GameDetails = () => {
         }
     };
 
+    const handleOrder = async () => {
+        try {
+            if (!username) {
+                NotificationManager.error('You need to be logged in for this operation', 'Error');
+                return;
+            }
+
+            await axios.post(`http://localhost:4000/orders/add-order`, {
+                username: username,
+                gameID: gameDetails._id,
+                orderedAt: new Date().toISOString(),
+            });
+
+            NotificationManager.success('Order added successfully!', 'Success');
+        } catch (error) {
+            NotificationManager.error(error.response.data, 'Error');
+        }
+    };
+
     return (
         <div className="container">
             {gameDetails ? (
@@ -106,7 +126,7 @@ const GameDetails = () => {
                                 <Link to="/games" className="mb-2 me-md-2">
                                     <MyButton title="Back" />
                                 </Link>
-                                <MyButton title="Add to cart" p_colorBorder={"#a6f167"} p_colorText={"#a6f167"} p_colorHover={"#bfff72"} p_colorHoverBg={"#505931"}/>
+                                <MyButton title="Add to cart" onClick={handleOrder} p_colorBorder={"#a6f167"} p_colorText={"#a6f167"} p_colorHover={"#bfff72"} p_colorHoverBg={"#505931"}/>
                             </div>
                         </div>
                     </div>
@@ -119,6 +139,7 @@ const GameDetails = () => {
                             {gameDetails.description}
                         </div>
                     </div>
+
                     {/*
                     <div className="row mt-5">
                         <div className="col-md-12 d-flex justify-content-center flex-wrap">

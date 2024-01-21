@@ -17,7 +17,6 @@ export default function Admin() {
             <div
                 style={{
                     display: 'flex',
-                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                     height: '80vh',
@@ -89,6 +88,14 @@ export default function Admin() {
         formData.append('publisher', event.target.publisher.value);
         formData.append('image', event.target.image.files[0]);
 
+        if (!event.target.title.value || !event.target.description.value ||
+            selectedGenres.length === 0 || selectedPlatforms.length === 0 ||
+            !event.target.price.value || !event.target.releaseDate.value ||
+            !event.target.developer.value || ! event.target.publisher.value || !event.target.image.files[0]) {
+
+            NotificationManager.error('All fields are required to fill in.', 'Error');
+            return;
+        }
 
         try {
             await axios.post('http://localhost:4000/games/add-game', formData, {
@@ -98,7 +105,7 @@ export default function Admin() {
             });
 
         } catch (error) {
-            console.error('Unexpected error:', error.message);
+            NotificationManager.error('Unexpected error:', 'Error');
         }
 
         NotificationManager.success('Game has been successfully added to the database.', 'Success');
@@ -164,7 +171,7 @@ export default function Admin() {
                 }
             });
         } catch (error) {
-            console.error('Unexpected error:', error.message);
+            NotificationManager.error('Unexpected error:', 'Error');
             return;
         }
 
@@ -183,7 +190,7 @@ export default function Admin() {
             });
 
         } catch (error) {
-            console.error('Unexpected error:', error.message);
+            NotificationManager.error('Game not found!', 'Error');
             return;
         }
 
