@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function ButtonClear({ onClear }) {
+export default function MyButton({ onClick, title }) {
     const [isHover, setIsHover] = useState(false);
 
     const handleMouseEnter = () => {
@@ -19,7 +19,7 @@ export default function ButtonClear({ onClear }) {
             <button
                 className="btn btn-secondary"
                 type="button"
-                onClick={onClear}
+                onClick={onClick}
                 style={{
                     width: "200px",
                     border: "2px solid black",
@@ -28,7 +28,7 @@ export default function ButtonClear({ onClear }) {
                     borderColor: isHover ? "#cb663d" : "#2E3234",
                 }}
             >
-                Clear
+                {title}
             </button>
         </div>
     );
