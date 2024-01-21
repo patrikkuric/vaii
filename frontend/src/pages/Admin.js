@@ -1,14 +1,36 @@
 import React, { useState } from 'react';
 import AdminButton from "../components/adminButton";
 import axios from "axios";
-import {NotificationContainer, NotificationManager} from "react-notifications";
+import {NotificationManager} from "react-notifications";
 import 'react-notifications/lib/notifications.css';
+import useTokenStore from "../token";
 
 export default function Admin() {
+    const { role} = useTokenStore();
     const [showCreateForm, setShowCreateForm] = useState(false);
     const [showUpdateForm, setShowUpdateForm] = useState(false);
     const [showDeleteForm, setShowDeleteForm] = useState(false);
     const [isHover, setIsHover] = useState(false);
+
+    if (role !== "Administrator") {
+        return (
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '80vh',
+                    color: 'white',
+                    fontSize: '2rem',
+                    fontWeight: 'bold',
+                    marginTop: '5rem'
+                }}
+            >
+                You are not authorized to access this page.
+            </div>
+        );
+    }
 
     const handleMouseEnter = () => {
         setIsHover(true);
@@ -36,7 +58,6 @@ export default function Admin() {
         setShowDeleteForm(prevState => !prevState);
     };
 
-
     const buttonStyle = {
         width: "200px",
         border: "2px solid black",
@@ -49,32 +70,31 @@ export default function Admin() {
     const handleCreateFormSubmit = async (event) => {
         event.preventDefault();
 
-        const title = event.target.title.value;
-        const description = event.target.description.value;
-        const genres = Array.from(event.target.genre.options)
-            .filter(option => option.selected)
-            .map(option => option.value);
-        const platforms = Array.from(event.target.platform.options)
-            .filter(option => option.selected)
-            .map(option => option.value);
-        const price = event.target.price.value;
-        const releaseDate = event.target.releaseDate.value;
-        const developer = event.target.developer.value;
-        const publisher = event.target.publisher.value;
-        const imageUrl = event.target.imageUrl.value;
+        const formData = new FormData();
+        formData.append('title', event.target.title.value);
+        formData.append('description', event.target.description.value);
+
+        const selectedGenres = Array.from(event.target.genre.options).filter(option => option.selected).map(option => option.value);
+        const selectedPlatforms = Array.from(event.target.platform.options).filter(option => option.selected).map(option => option.value);
+        selectedGenres.forEach((genre, index) => {
+            formData.append(`genres[${index}]`, genre);
+        });
+        selectedPlatforms.forEach((platform, index) => {
+            formData.append(`platforms[${index}]`, platform);
+        });
+
+        formData.append('price', event.target.price.value);
+        formData.append('releaseDate', event.target.releaseDate.value);
+        formData.append('developer', event.target.developer.value);
+        formData.append('publisher', event.target.publisher.value);
+        formData.append('image', event.target.image.files[0]);
 
 
         try {
-            await axios.post('http://localhost:4000/games/add-game', {
-                title,
-                description,
-                genres,
-                platforms,
-                price,
-                releaseDate,
-                developer,
-                publisher,
-                imageUrl,
+            await axios.post('http://localhost:4000/games/add-game', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
 
         } catch (error) {
@@ -89,33 +109,60 @@ export default function Admin() {
         event.preventDefault();
 
         const title = event.target.title.value;
-        const description = event.target.description.value;
-        const genres = Array.from(event.target.genre.options)
-            .filter(option => option.selected)
-            .map(option => option.value);
-        const platforms = Array.from(event.target.platform.options)
-            .filter(option => option.selected)
-            .map(option => option.value);
-        const price = event.target.price.value;
-        const releaseDate = event.target.releaseDate.value;
-        const developer = event.target.developer.value;
-        const publisher = event.target.publisher.value;
-        const imageUrl = event.target.imageUrl.value;
 
-        //console.log(title);
-        const updateData = {};
-        if (title) updateData.title = title;
-        if (description) updateData.description = description;
-        if (genres) updateData.genres = genres;
-        if (platforms) updateData.platforms = platforms;
-        if (price) updateData.price = price;
-        if (releaseDate) updateData.releaseDate = releaseDate;
-        if (developer) updateData.developer = developer;
-        if (publisher) updateData.publisher = publisher;
-        if (imageUrl) updateData.imageUrl = imageUrl;
+        const dataToSend = new FormData();
+        dataToSend.append('title', title);
+
+        const description = event.target.description.value;
+        if (description) {
+            dataToSend.append('description', description);
+        }
+
+        const selectedGenres = Array.from(event.target.genre.options).filter(option => option.selected).map(option => option.value);
+        if (selectedGenres.length > 0) {
+            selectedGenres.forEach((genre, index) => {
+                dataToSend.append(`genres[${index}]`, genre);
+            });
+        }
+
+        const selectedPlatforms = Array.from(event.target.platform.options).filter(option => option.selected).map(option => option.value);
+        if (selectedPlatforms.length > 0) {
+            selectedPlatforms.forEach((platform, index) => {
+                dataToSend.append(`platforms[${index}]`, platform);
+            });
+        }
+
+        const price = event.target.price.value;
+        if (price) {
+            dataToSend.append('price', price);
+        }
+
+        const releaseDate = event.target.releaseDate.value;
+        if (releaseDate) {
+            dataToSend.append('releaseDate', releaseDate);
+        }
+
+        const developer = event.target.developer.value;
+        if (developer) {
+            dataToSend.append('developer', developer);
+        }
+
+        const publisher = event.target.publisher.value;
+        if (publisher) {
+            dataToSend.append('publisher', publisher);
+        }
+
+        const imageFile = event.target.image.files[0];
+        if (imageFile) {
+            dataToSend.append('image', imageFile);
+        }
 
         try {
-            await axios.put(`http://localhost:4000/games/update-game/${title}`, updateData);
+            await axios.put(`http://localhost:4000/games/update-game/${title}`, dataToSend, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
         } catch (error) {
             console.error('Unexpected error:', error.message);
             return;
@@ -230,8 +277,8 @@ export default function Admin() {
                         <label htmlFor="publisher" className="form-label">Publisher</label>
                         <input type="text" className="form-control" name="publisher" required/>
 
-                        <label htmlFor="imageUrl" className="form-label">Image URL</label>
-                        <input type="text" className="form-control" name="imageUrl" required/>
+                        <label htmlFor="image" className="form-label">Image Upload</label>
+                        <input type="file" className="form-control" name="image" accept="image/*" required />
 
                         <button type="submit" className="btn btn-link" style={buttonStyle} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                             Create
@@ -296,8 +343,8 @@ export default function Admin() {
                             <label htmlFor="publisher" className="form-label">Publisher</label>
                             <input type="text" className="form-control" name="publisher"/>
 
-                            <label htmlFor="imageUrl" className="form-label">Image URL</label>
-                            <input type="text" className="form-control" name="imageUrl"/>
+                            <label htmlFor="image" className="form-label">Image Upload</label>
+                            <input type="file" className="form-control" name="image" accept="image/*" required />
 
                             <button type="submit" className="btn btn-link" style={buttonStyle} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                                 Update
@@ -329,8 +376,6 @@ export default function Admin() {
                     </div>
                 </div>
             )}
-
-            <NotificationContainer />
         </>
     );
 }

@@ -1,9 +1,22 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ContentPanelItem from "../components/contentPanelItem";
 import Navbar2 from "../Navbar2";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 export default function Home() {
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        axios
+            .get("http://localhost:4000/games")
+            .then((response) => {
+                console.log('API Response:', response.data);
+                setGames(response.data);
+            })
+            .catch((error) => console.error('Error fetching games:', error));
+
+    }, []);
     return (
         <>
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
@@ -14,17 +27,17 @@ export default function Home() {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <Link className="dropdown-item" to="/games">
+                        <Link className="dropdown-item" to="/games/Assassin's%20Creed%20Mirage">
                             <img src="/images/ACMirage.jpg" className="d-block w-100 carouselImages" alt="..." />
                         </Link>
                     </div>
                     <div className="carousel-item">
-                        <Link className="dropdown-item" to="/games">
+                        <Link className="dropdown-item" to="/games/Baldur's%20Gate%203">
                             <img src="/images/BaldursGate3.jpg" className="d-block w-100 carouselImages" alt="..." />
                         </Link>
                     </div>
                     <div className="carousel-item">
-                        <Link className="dropdown-item" to="/games">
+                        <Link className="dropdown-item" to="/games/Starfield">
                             <img src="/images/Starfield.jpg" className="d-block w-100 carouselImages" alt="..." />
                         </Link>
                     </div>
@@ -43,34 +56,41 @@ export default function Home() {
             
             <Navbar2 />
 
-            <div className="contentPanelItems d-flex flex-wrap justify-content-center">
+            <div className="container-xl mt-4" style={{maxWidth: "1520px"}}>
+                <div className="ms-4">
+                    <div style={{ color: "white", fontSize: "2rem", fontFamily: "Barlow" }}><strong>Most recent games</strong></div>
+                </div>
 
-                <Link to={`/games/Elden Ring`} className="nav-link" href="#">
-                    <ContentPanelItem title={"Elden Ring"} img={"Elden_Ring"} />
-                </Link>
-                <Link to={`/games/Cyberpunk 2077`} className="nav-link" href="#">
-                    <ContentPanelItem title={"Cyberpunk 2077"} img={"Cyberpunk"} />
-                </Link>
-                <Link to={`/games/Lies of P`} className="nav-link" href="#">
-                    <ContentPanelItem title={"Lies of P"} img={"Lies_of_P"} />
-                </Link>
-                <Link to={`/games/Lords of the Fallen`} className="nav-link" href="#">
-                    <ContentPanelItem title={"Lords of the Fallen"} img={"Lords of the Fallen"} />
-                </Link>
+                <div className="contentPanelItems d-flex flex-wrap justify-content-center">
+                    {games
+                        .sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))
+                        .slice(0, 4)
+                        .map((game) => (
+                            <div key={game.title}>
+                                <Link to={`/games/${game.title}`} className="nav-link" href="#">
+                                    <ContentPanelItem title={game.title} img={`http://localhost:4000/images/${game.imageUrl}`} />
+                                </Link>
+                            </div>
+                        ))}
+                </div>
 
-                {/*
-                <ContentPanelItem title={"Elden Ring"} img={"Elden_Ring"}/>
-                <ContentPanelItem title={"Cyberpunk 2077 - Phantom Liberty"} img={"Cyberpunk"}/>
-                <ContentPanelItem title={"Lies of P"} img={"Lies_of_P"}/>
-                <ContentPanelItem title={"Lords of the Fallen"} img={"Lords of the Fallen"}/>
-                <ContentPanelItem title={"Star Wars Jedi: Survivor"} img={"Star_Wars_Jedi_Survivor"}/>
-                <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
-                <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
-                <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
-                <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
-                <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
-                <ContentPanelItem title={"Borderlands 3"} img={"Borderlands3"}/>
-                */}
+                <div className="ms-4">
+                    <div style={{ color: "white", fontSize: "2rem", fontFamily: "Barlow" }}><strong>Games for you</strong></div>
+                </div>
+
+                <div className="contentPanelItems d-flex flex-wrap justify-content-center">
+                    {games
+                        .slice()
+                        .sort(() => Math.random() - 0.5)
+                        .slice(0, 4)
+                        .map((game) => (
+                            <div key={game.title}>
+                                <Link to={`/games/${game.title}`} className="nav-link" href="#">
+                                    <ContentPanelItem title={game.title} img={`http://localhost:4000/images/${game.imageUrl}`} />
+                                </Link>
+                            </div>
+                        ))}
+                </div>
             </div>
         </>
     );

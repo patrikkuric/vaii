@@ -3,7 +3,7 @@ import React from "react";
 export default function ContentPanelItem({ title, img }) {
     return  (
         <div className="contentPanelItem">
-            <img src={`/images/${img}.jpg`} alt="..." />
+            <img src={img} alt="..." style={{ maxWidth: '320px', maxHeight: '180px' }} />
             <figcaption>{title}</figcaption>
         </div>
     );

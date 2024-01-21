@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import useTokenStore from "../token";
 
 export default function Signup() {
     const { setToken } = useTokenStore();
-    const { setUsername } = useTokenStore();
-    const { setRole } = useTokenStore();
     const [isHover, setIsHover] = useState(false);
 
     const handleMouseEnter = () => {
@@ -68,22 +66,18 @@ export default function Signup() {
         clientSideRegisterValidation(username, email, password, repeatPassword);
 
         try {
-            const response = await axios.post('http://localhost:4000/users/register', {
+            await axios.post('http://localhost:4000/users/register', {
                 username,
                 email,
                 password,
                 repeatPassword
             });
-
         } catch (error) {
-/*
             if (error.response) {
                 NotificationManager.error(error.response.data.error, 'Error');
             } else {
-                console.error('Unexpected error:', error.message);
+                NotificationManager.error('Unexpected error:', 'Error');
             }
-            */
-
         }
     };
 
@@ -106,12 +100,12 @@ export default function Signup() {
                 password,
             });
 
-            const { token, user, role } = response.data;
+            const { token } = response.data;
             setToken(token);
-            setUsername(user);
-            setRole(role);
+            window.location.reload(); //f5
+            window.location.href = "/";
         } catch (error) {
-            //
+            NotificationManager.error('Invalid username/password combination', 'Error');
         }
     };
 
@@ -171,8 +165,6 @@ export default function Signup() {
                     </div>
                 </div>
             </div>
-
-            <NotificationContainer />
         </>
     );
 }

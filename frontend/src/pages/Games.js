@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DropdownComponent from "../components/dropdownComponent";
 import ContentPanelItem from "../components/contentPanelItem";
-import ButtonClear from "../components/buttonClear";
+import MyButton from "../components/myButton";
 import {Link} from "react-router-dom";
 import useTokenStore from "../token";
 
 export default function Games() {
-    const { username } = useTokenStore();
     const { role } = useTokenStore();
     //console.log(role);
     const [games, setGames] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedGenre, setSelectedGenre] = useState(null);  // Changed from selectedGenres
-    const [selectedPlatform, setSelectedPlatform] = useState(null);  // Changed from selectedPlatforms
+    const [selectedGenre, setSelectedGenre] = useState(null); 
+    const [selectedPlatform, setSelectedPlatform] = useState(null);
 
     useEffect(() => {
         axios
@@ -28,10 +27,11 @@ export default function Games() {
 
     const filteredGames = games.filter(
         (game) => {
-            console.log('Selected Genre:', selectedGenre);
-            console.log('Selected Platform:', selectedPlatform);
-            console.log('Search Term:', searchTerm);
-
+            /*
+            console.log('genre:', selectedGenre);
+            console.log('platforma:', selectedPlatform);
+            console.log('search:', searchTerm);
+*/
             return (
                 (!selectedGenre || game.genres.includes(selectedGenre)) &&
                 (!selectedPlatform || game.platforms.includes(selectedPlatform)) &&
@@ -43,6 +43,7 @@ export default function Games() {
     const clearAll = () => {
         setSelectedGenre(null);
         setSelectedPlatform(null);
+        setSearchTerm("");
     }
     return (
         <>
@@ -72,7 +73,7 @@ export default function Games() {
                         onSelect={(selectedValue) => setSelectedPlatform(selectedValue)}
                         onClear={() => setSelectedPlatform(null)}
                     />
-                    <ButtonClear onClear={() => clearAll() } />
+                    <MyButton onClick={() => clearAll() } title="Clear" />
                     <div className="col-md-2">
                         <input
                             type="text"
@@ -91,11 +92,11 @@ export default function Games() {
                     </div>
                 </div>
             </div>
-            <div className="contentPanelItems d-flex flex-wrap justify-content-center">
+            <div className="container contentPanelItems d-flex flex-wrap justify-content-center" style={{maxWidth: "1520px"}}>
                 {filteredGames.map((game) => (
                     <div key={game.title}>
                         <Link to={`/games/${game.title}`} className="nav-link" href="#">
-                            <ContentPanelItem title={game.title} img={game.imageUrl} />
+                            <ContentPanelItem title={game.title} img={`http://localhost:4000/images/${game.imageUrl}`} />
                         </Link>
                     </div>
                 ))}
@@ -103,7 +104,7 @@ export default function Games() {
                 {role === "Administrator" && (
                     <div>
                         <Link to={`/admin`} className="nav-link" href="#">
-                            <ContentPanelItem title="Add a game" img="Add_Game" />
+                            <ContentPanelItem title="Add a game" img="http://localhost:4000/images/Add_Game.jpg" />
                         </Link>
                     </div>
                 )}
