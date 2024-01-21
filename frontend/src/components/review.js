@@ -101,7 +101,9 @@ export default function Review({ _id, text, rating, date, currentUser, onUpdate,
                                     as="textarea"
                                     rows={4}
                                     value={updatedText}
+                                    placeholder="Edit your review here... (max 100 characters)"
                                     onChange={(e) => setUpdatedText(e.target.value)}
+                                    maxLength={100}
                                 />
                             </Form.Group>
                         </Form>
