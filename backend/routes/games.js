@@ -1,5 +1,6 @@
 const express = require('express');
 const Game = require("../models/game");
+const Review = require("../models/review");
 const multer = require('multer');
 const router = express.Router();
 
@@ -102,6 +103,7 @@ router.post('/delete-game/:title', async function (req, res) {
         const result = await Game.findOneAndDelete({ title: title });
 
         if (result) {
+            await Review.deleteMany({game: result._id})
             res.send(`Game with title '${title}' has been deleted successfully.`);
         } else {
             res.status(404).send(`Game with title '${title}' was not found.`);
